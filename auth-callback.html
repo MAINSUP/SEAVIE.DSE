@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <!-- Favicon -->
+    <link rel="icon" href="favicon.png" type="image/png">
+    <title>Verifying your account...</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f9f9f9; text-align: center; }
+        .card { padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); max-width: 400px; width: 90%; }
+        .btn { display: inline-block; padding: 12px 24px; background: #0070f3; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Email Confirmed!</h2>
+    <p>We are opening the SeaVie app for you...</p>
+    <!-- Fallback button if auto-redirect is blocked -->
+    <a href="seavieexpo://login" class="btn" id="app-link">Open SeaVie App</a>
+</div>
+
+<script>
+    // 1. Extract hash fragments or search queries sent by Supabase 
+    // (Supabase sends access_token, refresh_token, etc., in the URL hash)
+    const urlHash = window.location.hash; 
+    const urlSearch = window.location.search;
+    
+    // 2. Construct the full deep link back to your Expo app
+    const appTargetUrl = `seavieexpo://login${urlSearch}${urlHash}`;
+    
+    // Update the button link dynamically to pass the session tokens to Expo
+    document.getElementById('app-link').href = appTargetUrl;
+
+    // 3. Try automatic redirect immediately
+    setTimeout(() => {
+        window.location.replace(appTargetUrl);
+    }, 500);
+</script>
+
+</body>
+</html>
