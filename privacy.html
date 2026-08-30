@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Favicon -->
   <link rel="icon" href="favicon.png" type="image/png">
   <title>Privacy Policy. SeaVie - Seafarers marine wallet</title>
   <style>
@@ -33,38 +32,43 @@
 
 <div class="container">
   <div class="meta">
-    <strong>Last Updated:</strong> July 1, 2026 &nbsp;|&nbsp;
-    <strong>Effective Date:</strong> July 1, 2026 &nbsp;|&nbsp;
+    <strong>Last Updated:</strong> August 30, 2026 &nbsp;|&nbsp;
+    <strong>Effective Date:</strong> August 30, 2026 &nbsp;|&nbsp;
     <strong>Developer:</strong> DSE — Data Science Enterprise
   </div>
 
-  <p>This Privacy Policy describes how SeaVie ("we", "our", or "us") collects, uses, and protects your information when you use our mobile application. We are committed to protecting your privacy and handling your data responsibly.</p>
+  <p>This Privacy Policy describes how SeaVie ("we", "our", or "us") collects, uses, processes, and protects your information when you use our mobile application. We are committed to protecting your privacy and handling your data responsibly.</p>
 
   <h2>1. Information We Collect</h2>
 
-  <p><strong>Account Information:</strong> When you create an account, we collect your email address and encrypted password through Supabase Auth. We do not collect your name unless you choose to provide it.</p>
+  <p><strong>Account Information:</strong> When you create an account, we collect your email address and authentication credentials through Supabase Auth. We do not collect your name unless you choose to provide it.</p>
 
-  <p><strong>Usage Data:</strong> We collect information about how you use the app, including:</p>
+  <p><strong>Usage and Wallet Data:</strong> We process information associated with your use of SeaVie, including:</p>
   <ul>
-    <li>List of documents in the wallet</li>
-    <li>Name, Surname, Rank, Age, Professional and Social Statuses</li>
-    <li>Subscription plan status</li>
+    <li>Documents and document metadata in your digital wallet</li>
+    <li>Name, Surname, Rank, Age, Professional and Social Statuses where you provide or extract them</li>
+    <li>Subscription plan and quota status</li>
     <li>App language preference</li>
   </ul>
 
   <p><strong>Content You Submit:</strong></p>
   <ul>
-    <li><strong>Scanned image</strong> — sent to OpenAI API for processingfor OCR/analysis; images are not stored after processing</li>
-    <li><strong>Documents (PDF)</strong> — sent to Anthropic Claude API for analysis; documents are not stored after processing</li>
+    <li><strong>Scanned document images</strong> — when you use the AI document scanner, the image is sent from the app to the SeaVie backend for processing and may then be transmitted to the OpenAI API for vision-based OCR and structured data extraction. The backend implementation also performs image preprocessing before the OpenAI request.</li>
+    <li><strong>PDF documents</strong> — documents submitted for AI analysis may be sent by the SeaVie backend to the Anthropic Claude API for processing.</li>
+    <li><strong>Voice recordings</strong> — when you use voice features, audio may be processed for transcription as described in the app.</li>
   </ul>
+
+  <p><strong>Local Document Storage:</strong> Documents and their associated images may be stored locally on your device as part of your SeaVie digital wallet. This local storage is separate from temporary transmission of images to our backend and third-party AI providers for processing.</p>
 
   <p><strong>Payment Information:</strong> Subscription payments are processed through the Apple App Store. We do not collect or store credit card information. RevenueCat is used to manage subscription entitlements.</p>
 
   <h2>2. How We Use Your Information</h2>
   <ul>
-    <li>To provide AI-powered maritime inspection assistance and wallet infrastructure</li>
-    <li>To manage your account and subscription quota</li>
-    <li>To improve the accuracy and relevance of responses</li>
+    <li>To provide digital wallet functionality for maritime documents</li>
+    <li>To provide AI-powered document OCR, recognition, extraction, and analysis</li>
+    <li>To provide maritime inspection assistance and related AI features</li>
+    <li>To manage your account, subscription, and usage quota</li>
+    <li>To improve the accuracy and relevance of responses and extracted information</li>
     <li>To authenticate your identity and prevent unauthorized access</li>
     <li>To send important service notifications (not marketing)</li>
   </ul>
@@ -72,41 +76,42 @@
   <h2>3. Third-Party Services</h2>
   <p>SeaVie uses the following third-party services to deliver its functionality:</p>
   <ul>
-    <li><strong>Supabase</strong> — authentication and database (GDPR compliant, EU data centers available). <a href="https://supabase.com/privacy" target="_blank">Privacy Policy</a></li>
-    <li><strong>Anthropic Claude API</strong> — AI processing of text, images, and documents. <a href="https://www.anthropic.com/privacy" target="_blank">Privacy Policy</a></li>
-    <li><strong>OpenAI</strong> — scanned image processing. <a href="https://deepgram.com/privacy" target="_blank">Privacy Policy</a></li>
-    <li><strong>RevenueCat</strong> — subscription and purchase management. <a href="https://www.revenuecat.com/privacy" target="_blank">Privacy Policy</a></li>
-    <li><strong>Apple App Store</strong> — app distribution and payment processing. <a href="https://www.apple.com/privacy/" target="_blank">Privacy Policy</a></li>
+    <li><strong>Supabase</strong> — authentication and database services. <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+    <li><strong>Anthropic Claude API</strong> — AI processing of submitted text, images, and documents for supported features. <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+    <li><strong>OpenAI API</strong> — vision-based processing of scanned document images for OCR and structured data extraction. <a href="https://openai.com/policies/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+    <li><strong>RevenueCat</strong> — subscription and purchase entitlement management. <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+    <li><strong>Apple App Store</strong> — app distribution and payment processing. <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
   </ul>
 
   <h2>4. Data Storage and Security</h2>
-  <p>Your account data is stored securely in Supabase's encrypted database. We implement industry-standard security measures including:</p>
+  <p>Your account and server-side application data are stored using Supabase infrastructure. We implement security measures including:</p>
   <ul>
-    <li>HTTPS encryption for all data transmission</li>
+    <li>HTTPS encryption for data transmission</li>
     <li>JWT token-based authentication</li>
-    <li>Row-level security policies in the database</li>
-    <li>No storage of audio, images, or documents after processing</li>
+    <li>Row-level security policies where applicable</li>
+    <li>Access controls for backend services</li>
   </ul>
+  <p>Documents and images in your digital wallet may remain stored locally on your device. AI processing involves transmitting submitted content to the SeaVie backend and, where applicable, third-party AI providers such as OpenAI or Anthropic. We do not represent that all content transmitted to third-party providers is permanently stored or immediately deleted; their handling is governed by their respective terms and policies.</p>
 
   <h2>5. Data Retention</h2>
   <ul>
-    <li><strong>Account data</strong> — retained while your account is active</li>
-    <li><strong>Quota usage records</strong> — reset monthly</li>
-    <li><strong>Audio recordings</strong> — deleted immediately after transcription</li>
-    <li><strong>Photos and documents</strong> — not stored; processed in real-time only</li>
-    <li><strong>Chat history</strong> — currently stored only on your device (not on our servers)</li>
+    <li><strong>Account data</strong> — retained while your account is active and as necessary for legitimate business or legal purposes</li>
+    <li><strong>Wallet documents and images</strong> — may remain on your device until you delete them or remove the app, subject to your device's storage and backup settings</li>
+    <li><strong>AI processing data</strong> — submitted images and documents are transmitted for processing; retention by third-party AI providers is subject to their applicable policies and service terms</li>
+    <li><strong>Audio recordings</strong> — where transcription is used, audio may be processed for transcription and is not intended to be retained as a permanent SeaVie wallet document</li>
+    <li><strong>Chat history</strong> — currently stored on your device where supported by the app</li>
   </ul>
 
   <h2>6. Your Rights</h2>
-  <p>You have the right to:</p>
+  <p>Subject to applicable law, you have the right to:</p>
   <ul>
-    <li><strong>Access</strong> — request a copy of your personal data</li>
-    <li><strong>Correction</strong> — update inaccurate information</li>
-    <li><strong>Deletion</strong> — request deletion of your account and associated data</li>
-    <li><strong>Portability</strong> — receive your data in a machine-readable format</li>
-    <li><strong>Objection</strong> — object to certain types of processing</li>
+    <li><strong>Access</strong> — request a copy of personal data we hold about you</li>
+    <li><strong>Correction</strong> — request correction of inaccurate information</li>
+    <li><strong>Deletion</strong> — request deletion of your account and associated personal data, subject to legal requirements</li>
+    <li><strong>Portability</strong> — receive applicable personal data in a machine-readable format</li>
+    <li><strong>Objection or restriction</strong> — object to or request restriction of certain processing where provided by applicable law</li>
   </ul>
-  <p>To exercise these rights, contact us at <a href="mailto:support@dse.codes">support@dse.codes</a></p>
+  <p>To exercise these rights, contact us at <a href="mailto:support@dse.codes">support@dse.codes</a>.</p>
 
   <h2>7. Children's Privacy</h2>
   <p>SeaVie is designed for maritime professionals and is not intended for children under 13. We do not knowingly collect personal information from children under 13. If you believe we have collected information from a child, please contact us immediately.</p>
@@ -114,16 +119,16 @@
   <h2>8. Enterprise and Fleet Accounts</h2>
   <p>If you use SeaVie through an Enterprise or Fleet account provided by your employer:</p>
   <ul>
-    <li>Your employer (Fleet Admin) may see your usage statistics</li>
+    <li>Your employer (Fleet Admin) may receive usage statistics or other information made available through the enterprise service</li>
     <li>Company documents uploaded by Fleet Admins may be used to provide contextual answers</li>
-    <li>Your individual questions are not shared with your employer</li>
+    <li>Individual questions are not intentionally shared with your employer unless the enterprise service or applicable agreement provides otherwise</li>
   </ul>
 
   <h2>9. International Data Transfers</h2>
-  <p>SeaVie is operated from Ukraine. Your data may be processed in various countries where our service providers operate, including the United States and European Union. We ensure appropriate safeguards are in place for such transfers.</p>
+  <p>SeaVie is operated from Ukraine. Your data may be processed in countries where SeaVie or its service providers operate, including the United States and European Union. Where required by applicable law, we seek to use appropriate safeguards for international data transfers.</p>
 
   <h2>10. Changes to This Policy</h2>
-  <p>We may update this Privacy Policy from time to time. We will notify you of significant changes via the app or email. Continued use of SeaVie after changes constitutes acceptance of the updated policy.</p>
+  <p>We may update this Privacy Policy from time to time. We will notify you of significant changes via the app, website, or email where appropriate. The updated policy will state its effective date.</p>
 
   <h2>11. Contact Us</h2>
   <p>If you have questions about this Privacy Policy or your data, contact us:</p>
