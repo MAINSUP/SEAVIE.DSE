@@ -106,8 +106,17 @@
       animation: pulse 1.4s ease-in-out infinite;
     }
 
-    .success .dot { background: var(--tide); box-shadow: 0 0 0 4px rgba(52,211,153,.10); animation: none; }
-    .error .dot { background: var(--danger); box-shadow: 0 0 0 4px rgba(251,113,133,.10); animation: none; }
+    .success .dot {
+      background: var(--tide);
+      box-shadow: 0 0 0 4px rgba(52,211,153,.10);
+      animation: none;
+    }
+
+    .error .dot {
+      background: var(--danger);
+      box-shadow: 0 0 0 4px rgba(251,113,133,.10);
+      animation: none;
+    }
 
     .btn {
       display: none;
@@ -157,43 +166,46 @@
       <span id="statusText">Opening the app…</span>
     </div>
 
-    <a class="btn" id="app-link" href="seavieexpo://login">Open SeaVie</a>
+    <a class="btn" id="app-link" href="seavieexpo://auth/callback">Open SeaVie</a>
 
     <div class="footer">You can close this page after SeaVie opens.</div>
   </main>
 
   <script>
     (function () {
-      const APP_SCHEME = "seavieexpo://login";
+      // Must match AuthSession.makeRedirectUri() in seavie-mobile/src/screens/AuthScreen.jsx.
+      const APP_CALLBACK = "seavieexpo://auth/callback";
+
       const card = document.getElementById("card");
       const title = document.getElementById("title");
       const message = document.getElementById("message");
       const statusText = document.getElementById("statusText");
-      const status = document.getElementById("status");
       const button = document.getElementById("app-link");
 
-      const params = new URLSearchParams(window.location.search);
+      const search = window.location.search || "";
       const hash = window.location.hash || "";
+      const queryParams = new URLSearchParams(search);
+      const hashParams = new URLSearchParams(hash.replace(/^#/, ""));
 
-      // Supabase may return auth errors in the query string or fragment.
-      const error = params.get("error") || new URLSearchParams(hash.replace(/^#/, "")).get("error");
+      // Supabase may return OAuth errors in either the query string or fragment.
+      const error = queryParams.get("error") || hashParams.get("error");
       const errorDescription =
-        params.get("error_description") ||
-        new URLSearchParams(hash.replace(/^#/, "")).get("error_description");
+        queryParams.get("error_description") ||
+        hashParams.get("error_description");
 
       if (error) {
         card.classList.add("error");
         title.textContent = "Confirmation could not be completed";
         message.textContent = errorDescription
-          ? decodeURIComponent(errorDescription.replace(/\+/g, " "))
+          ? errorDescription.replace(/\+/g, " ")
           : "The confirmation link is invalid or has expired. Please request a new link.";
         statusText.textContent = "Action required";
         return;
       }
 
-      // Preserve the Supabase callback payload exactly. Hash fragments are not
-      // sent to the web server, but are available here for the hand-off to the app.
-      const target = APP_SCHEME + (window.location.search || "") + hash;
+      // Keep the Supabase callback parameters intact. In particular, the hash
+      // contains the access/refresh tokens used by AuthScreen after Google OAuth.
+      const target = APP_CALLBACK + search + hash;
       button.href = target;
 
       let opened = false;
@@ -204,11 +216,9 @@
         window.location.href = target;
       };
 
-      // Give the browser a moment to render the confirmation state before
-      // attempting the custom-scheme hand-off.
       window.setTimeout(openApp, 650);
 
-      // If the OS/browser blocks the custom scheme, leave a visible fallback.
+      // If the browser blocks the custom-scheme hand-off, expose a manual fallback.
       window.setTimeout(() => {
         card.classList.add("success");
         button.style.display = "inline-block";
