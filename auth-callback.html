@@ -166,7 +166,7 @@
       <span id="statusText">Opening the app…</span>
     </div>
 
-    <a class="btn" id="app-link" href="seavieexpo://">Open SeaVie</a>
+    <a class="btn" id="app-link" href="seavieexpo://auth">Open SeaVie</a>
 
     <div class="footer">You can close this page after SeaVie opens.</div>
   </main>
@@ -174,7 +174,7 @@
   <script>
     (function () {
       // Must match AuthSession.makeRedirectUri() in seavie-mobile/src/screens/AuthScreen.jsx.
-      const APP_CALLBACK = "seavieexpo://AuthScreen";
+      const APP_CALLBACK = "seavieexpo://auth";
 
       const card = document.getElementById("card");
       const title = document.getElementById("title");
